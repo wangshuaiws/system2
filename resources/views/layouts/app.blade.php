@@ -12,7 +12,7 @@
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="../assets/css2/bootstrap.min.css" />
     <link rel="stylesheet" href="../assets/css2/font-awesome.min.css" />
-
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- page specific plugin styles -->
 
     <!-- text fonts -->

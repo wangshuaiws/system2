@@ -14,14 +14,16 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="home.html">首页</a>
+                    <a href="{{ url('/home') }}">首页</a>
                 </li>
                 <!--	<li class="active">Dashboard</li>-->
             </ul>
             <!-- /.breadcrumb -->
         </div>
-
-        <!-- /section:basics/content.breadcrumbs -->
+        <div class="container">
+            @include('flash::message')
+        </div>
+                    <!-- /section:basics/content.breadcrumbs -->
         <div class="page-content">
             <div class="page-content-area">
                 <div class="row">
@@ -228,31 +230,6 @@
 <script src="../assets/js2/flot/jquery.flot.resize.min.js"></script>
 <script src="../assets/js2/jquery.dataTables.min.js"></script>
 <script src="../assets/js2/jquery.dataTables.bootstrap.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#warning,#appointment,#examine,#questionnaire').dataTable({
-            "bSort": false,
-            "oLanguage": {
-                "sInfoEmpty": "没有数据",
-                "sZeroRecords": "没有检索到数据"
-            },
-            "bProcessing": true,
-            "searching": false,
-            "bLengthChange": false,
-            "bAutoWidth": true,
-            "bPaginate": false,
-            "bInfo": false,
-            "scrollY": "200px",
-            "sScrollX": "100%",
-            "sScrollXInner": "100%",
-            "sAjaxSource": 'homedata.json'
-        });
-        $($(".light-blue")[1]).on("click",function(){
-            window.location="index.html";
-        });
-    });
-</script>
-
 <!-- ace scripts -->
 <script src="../assets/js2/ace-elements.min.js"></script>
 <script src="../assets/js2/ace.min.js"></script>
