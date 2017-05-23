@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('confirmation_token');
             $table->smallInteger('is_active')->default(0);
-            $table->boolean('permission');
+            $table->boolean('permission')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

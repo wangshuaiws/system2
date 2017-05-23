@@ -204,17 +204,21 @@
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="profile.html">
+                            <a href="">
                                 <i class="ace-icon fa fa-user"></i> 个人资料
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="light-blue">
-                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                    <a href="{{ url('/logout') }}" class="dropdown-toggle" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                         <i class="ace-icon fa fa-power-off" style="color:red"></i>
                         <span class="">退出</span>
                     </a>
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                 </li>
 
                 <!-- /section:basics/navbar.user_menu -->

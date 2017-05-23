@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Mail;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Naux\Mail\SendCloudTemplate;
-use Mail;
+
 
 class RegisterController extends Controller
 {
@@ -71,7 +72,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'confirmation_token' => str_random(40),
-            'permission' => 0,
         ]);
         $this->sendVerifyEmailTo($user);
         return $user;
