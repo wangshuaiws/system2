@@ -20,9 +20,6 @@
             </ul>
             <!-- /.breadcrumb -->
         </div>
-        <div class="container">
-            @include('flash::message')
-        </div>
                     <!-- /section:basics/content.breadcrumbs -->
         <div class="page-content">
             <div class="page-content-area">

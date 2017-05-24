@@ -77,7 +77,7 @@
                                             <label class="col-sm-3 control-label">用户名</label>
                                             <div class="col-sm-8">
                                                     <span class="block input-icon input-icon-right">
-                                                    <input type="text" class="form-control" name="l-username"
+                                                    <input type="text" class="form-control" name="login"
                                                            data-bv-message="用户名不为空"
                                                            data-bv-notempty="true"
                                                            data-bv-notempty-message="用户名不为空"
@@ -96,7 +96,7 @@
                                             <label class="col-sm-3 control-label">密码</label>
                                             <div class="col-sm-8">
                                                     <span class="block input-icon input-icon-right">
-                                                    <input type="password" class="form-control" name="l-password"
+                                                    <input type="password" class="form-control" name="password"
                                                            data-bv-notempty="true"
                                                            data-bv-notempty-message="密码不能为空"
                                                            data-bv-stringlength="true"
@@ -153,22 +153,33 @@
                                         请填写您的注册邮箱
                                     </p>
 
-                                    <form>
-                                        <fieldset>
-                                            <label class="block clearfix">
-                                                    <span class="block input-icon input-icon-right">
-															<input type="email" class="form-control" placeholder="邮箱地址" />
-															<i class="ace-icon fa fa-envelope"></i>
-														</span>
-                                            </label>
+                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+                                        {{ csrf_field() }}
 
-                                            <div class="clearfix">
-                                                <button type="button" class="width-35 pull-right btn btn-sm btn-danger">
-                                                    <i class="ace-icon fa fa-lightbulb-o"></i>
-                                                    <span class="bigger-110">发送</span>
+                                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                            <label for="email" class="col-md-3 control-label">邮 箱</label>
+
+                                            <div class="col-md-9">
+                                                <span class="block input-icon input-icon-right">
+                                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                                <i class="ace-icon fa fa-envelope"></i>
+                                                </span>
+
+                                                @if ($errors->has('email'))
+                                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group password">
+                                            <div class="col-md-4 col-md-offset-4">
+                                                <button type="submit" class="btn btn-primary">
+                                                    找回密码
                                                 </button>
                                             </div>
-                                        </fieldset>
+                                        </div>
                                     </form>
                                 </div>
                                 <!-- /.widget-main -->
