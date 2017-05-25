@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\model\Role;
+use App\model\Permission;
 
 class RolesController extends Controller
 {
@@ -13,7 +15,9 @@ class RolesController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::with('perms')->get();
+        $perms = Permission::get();
+        return view('auth.roles.index',compact('roles','perms'));
     }
 
     /**
@@ -34,7 +38,7 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -45,7 +49,6 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
