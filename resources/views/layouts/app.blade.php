@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../assets/css2/home.css" />
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="../assets/css2/ace-ie.min.css" />
+    <link rel="stylesheet" href="../assets/css2/myself.css" />
     <![endif]-->
 
     <!-- inline styles related to this page -->
@@ -42,6 +43,15 @@
     <script src="../assets/js2/html5shiv.min.js"></script>
     <script src="../assets/js2/respond.min.js"></script>
     <![endif]-->
+    <style>
+        .role-btn {
+            background: transparent !important;
+            border: none;
+            border-radius: 0;
+            padding: 5px;
+            color: black !important;
+        }
+    </style>
 </head>
 
 <body class="no-skin">
@@ -232,6 +242,9 @@
 
 <!-- /section:basics/navbar.layout -->
 <div class="main-container" id="main-container">
+    <div class="container">
+        @include('flash::message')
+    </div>
     <script type="text/javascript">
         try {
             ace.settings.check('main-container', 'fixed')
@@ -543,6 +556,6 @@
     </a>
 </div>
 <!-- /.main-container -->
-
+<script>$('#flash-overlay-modal').modal();</script>
 </body>
 </html>

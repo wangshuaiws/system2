@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css2/font-awesome.min.css" />
     <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
     <!-- Scripts -->
     <script>
@@ -23,6 +24,9 @@
 <body>
 <div id="app">
     <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            @include('flash::message')
+        </div>
         <div class="container">
             <div class="navbar-header">
 

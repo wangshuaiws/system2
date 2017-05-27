@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\model\Role;
 
 class SettingsController extends Controller
 {
@@ -23,9 +25,8 @@ class SettingsController extends Controller
     //成员管理
     public function membermanage()
     {
-        //$users = User::with('roles.perms')->get();
-        //$roles = Role::get();
-        //return view('settings/membermanage',compact('users','roles'));
-        return view('settings/membermanage');
+        $users = User::with('roles.perms')->get();
+        $roles = Role::get();
+        return view('settings/membermanage',compact('users','roles'));
     }
 }

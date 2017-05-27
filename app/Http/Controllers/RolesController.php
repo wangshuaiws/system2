@@ -38,7 +38,17 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
+        $role = Role::create([
+            'name' => $request->name,
+            'display_name' => $request->display_name,
+            'description' => $request->description
+        ]);
 
+        if($request->perm){
+            $role->attachPermissions($request->perm);
+        }
+        flash('创建角色成功','success')->important();
+        return back();
     }
 
     /**

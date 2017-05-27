@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\model\Permission;
 
 class PermissionsController extends Controller
 {
@@ -34,7 +35,13 @@ class PermissionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $perm = Permission::create([
+            'name' => $request->name,
+            'display_name' => $request->display_name,
+            'description' => $request->description
+        ]);
+
+        return back();
     }
 
     /**
