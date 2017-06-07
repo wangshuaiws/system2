@@ -3,7 +3,24 @@
 <!-- 主体 -->
 <div class="main-content">
     <!-- #section:basics/content.breadcrumbs -->
-
+    <div class="breadcrumbs" id="breadcrumbs">
+        <script type="text/javascript">
+            try {
+                ace.settings.check('breadcrumbs', 'fixed')
+            } catch (e) {}
+        </script>
+        <!--路径导航-->
+        <ul class="breadcrumb">
+            <li>
+                <i class="ace-icon fa fa-home home-icon"></i>
+                <a href="{{ url('/home') }}">首页</a>
+            </li>
+            <li>基础设置</li>
+            <li class="active">角色管理</li>
+            <!--	<li class="active">Dashboard</li>-->
+        </ul>
+        <!-- /.breadcrumb -->
+    </div>
     <!-- /section:basics/content.breadcrumbs -->
     <div class="page-content">
         <div class="page-content-area">

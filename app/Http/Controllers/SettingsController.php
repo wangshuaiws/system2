@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\User;
-use App\model\Role;
+use App\Http\Repository\RoleRepository;
+use App\Http\Repository\UserRepository;
 
 class SettingsController extends Controller
 {
+    public function __construct(RoleRepository $role,UserRepository $user)
+    {
+        $this->role = $role;
+        $this->user = $user;
+    }
     public function system()
     {
         return view('settings/system');
@@ -25,8 +29,8 @@ class SettingsController extends Controller
     //成员管理
     public function membermanage()
     {
-        $users = User::with('roles.perms')->get();
-        $roles = Role::get();
+        $users = $this->user->getWith('roles.perms');
+        $roles = $this->role->getAll();
         return view('settings/membermanage',compact('users','roles'));
     }
 }

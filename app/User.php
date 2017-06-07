@@ -28,4 +28,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function is_admin()
+    {
+        return $this->email == $this->admin?true:false;
+    }
+
+    public function role()
+    {
+        return $this->belongsToMany('App\Model\Role');
+    }
+
+    public function user()
+    {
+        return $this->belongsToMany('App\User');
+    }
+
+    public function permission()
+    {
+        return $this->hasMany('App\Model\Permission');
+    }
 }

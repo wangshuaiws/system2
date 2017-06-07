@@ -2,8 +2,24 @@
         <!-- 主体 -->
 @section('content')
         <div class="main-content">
-            <!-- #section:basics/content.breadcrumbs -->
-            <!-- /section:basics/content.breadcrumbs -->
+            <div class="breadcrumbs" id="breadcrumbs">
+                <script type="text/javascript">
+                    try {
+                        ace.settings.check('breadcrumbs', 'fixed')
+                    } catch (e) {}
+                </script>
+                <!--路径导航-->
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="{{ url('/home') }}">首页</a>
+                    </li>
+                    <li>基础设置</li>
+                    <li class="active">成员管理</li>
+                    <!--	<li class="active">Dashboard</li>-->
+                </ul>
+                <!-- /.breadcrumb -->
+            </div>
             <div class="page-content-area">
                 <div class="container">
                     @foreach($users as $user)
@@ -19,12 +35,10 @@
                                     <p>Email: {{ $user->email }}</p>
                                     @if(count($user->roles))
                                         <table class="table">
-                                            <thead>
                                             <tr>
                                                 <th>角色</th>
                                                 <th>权限</th>
                                             </tr>
-                                            </thead>
                                             <tbody>
                                             @foreach($user->roles as $role)
                                                 <tr>

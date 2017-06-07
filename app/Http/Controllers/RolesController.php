@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repository\PermissionRepository;
+use App\Http\Repository\RoleRepository;
+use App\Http\Repository\UserRepository;
+
+use App\Http\Requests\RoleRequest;
 use Illuminate\Http\Request;
-use App\model\Role;
-use App\model\Permission;
 
 class RolesController extends Controller
 {
@@ -13,10 +16,21 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $role;
+    protected $user;
+    protected $perm;
+
+    public function __construct(RoleRepository $role,UserRepository $user,PermissionRepository $perm)
+    {
+        $this->role = $role;
+        $this->user = $user;
+        $this->perm = $perm;
+    }
+
     public function index()
     {
-        $roles = Role::with('perms')->get();
-        $perms = Permission::get();
+        $roles = $this->role->getWith('perms');
+        $perms = $this->perm->getAll();
         return view('auth.roles.index',compact('roles','perms'));
     }
 
@@ -36,18 +50,18 @@ class RolesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
-        $role = Role::create([
-            'name' => $request->name,
-            'display_name' => $request->display_name,
-            'description' => $request->description
-        ]);
-
-        if($request->perm){
-            $role->attachPermissions($request->perm);
+        $data = [
+            'name' => $request->get('name'),
+            'display_name' => $request->get('display_name'),
+            'description' => $request->get('description')
+        ];
+        if($this->role->create($request,$data)) {
+            flash('创建角色成功','success')->important();
+            return back();
         }
-        flash('创建角色成功','success')->important();
+        flash('创建角色失败','danger')->important();
         return back();
     }
 
@@ -67,9 +81,10 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
-        //
+        $this->user->updateById($request,$id);
+        return back();
     }
 
     /**
@@ -81,7 +96,8 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->role->updateById($request,$id);
+        return back();
     }
 
     /**
@@ -92,6 +108,7 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->role->deleteById($id);
+        return back();
     }
 }

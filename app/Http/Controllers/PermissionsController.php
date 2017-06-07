@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PermissionRequest;
+use App\Http\Repository\PermissionRepository;
 use Illuminate\Http\Request;
-use App\model\Permission;
 
 class PermissionsController extends Controller
 {
@@ -12,6 +13,12 @@ class PermissionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $perm;
+    public function __construct(PermissionRepository $perm)
+    {
+        $this->perm = $perm;
+    }
+
     public function index()
     {
         //
@@ -33,14 +40,17 @@ class PermissionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PermissionRequest $request)
     {
-        $perm = Permission::create([
-            'name' => $request->name,
-            'display_name' => $request->display_name,
-            'description' => $request->description
-        ]);
-
+        $data = [
+            'name' => $request->get('name'),
+            'display_name' => $request->get('display_name'),
+            'description' => $request->get('description')
+        ];
+        $perm = $this->perm->create($data);
+        if($perm) {
+            flash('创建权限成功','success')->important();
+        }
         return back();
     }
 

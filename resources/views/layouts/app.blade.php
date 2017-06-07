@@ -51,6 +51,10 @@
             padding: 5px;
             color: black !important;
         }
+        .btn {
+            font-size:14px;
+            border-radius:4px;
+        }
     </style>
 </head>
 

@@ -70,6 +70,8 @@ Route::get('/archivespersonal', 'ManagementController@archivespersonal');
 Route::get('/archivesquest', 'ManagementController@archivesquest');
 Route::get('/archivesall', 'ManagementController@archivesall');
 
+//显示量表
+Route::get('/scaleManage/{id}','ScaleController@show');
 
 
 

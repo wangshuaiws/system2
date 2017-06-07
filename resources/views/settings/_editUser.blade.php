@@ -23,8 +23,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                {!! Form::submit('编辑用户',['class'=>"btn btn-default"]) !!}
+                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                {!! Form::submit('编辑用户',['class'=>"btn btn-primary"]) !!}
                 {!! Form::close() !!}
             </div>
         </div>

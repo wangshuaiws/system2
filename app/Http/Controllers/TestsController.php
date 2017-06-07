@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TestsController extends Controller
 {
+    //量表管理
     public function gaugemanage()
     {
-        return view('tests/gaugemanage');
+        $scales = DB::select('select * from scale_manage');
+        return view('tests/gaugemanage',['scales' => $scales]);
     }
     //量表分配
     public function gaugeallot()

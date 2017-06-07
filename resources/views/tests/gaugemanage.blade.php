@@ -42,39 +42,20 @@
                                             <th>操作</th>
                                         </thead>
                                         <tbody>
+                                        <?php $i=1; ?>
+                                        @foreach($scales as $scale)
                                             <tr>
-                                                <td>1</td>
-                                                <td>汉密尔顿抑郁量表</td>
-                                                <td>情绪评定</td>
-                                                <td>25</td>
-                                                <td>有抑郁症状的成年人(医生评定)</td>
+                                                <td>{{ $i++ }}</td>
+                                                <td>{{ $scale->title }}</td>
+                                                <td>{{ $scale->type }}</td>
+                                                <td>{{ $scale->number }}</td>
+                                                <td>{{ $scale->for_which }}</td>
                                                 <td>
-                                                    <span><a href="/permissions/1">查看</a></span>
+                                                    <span><a href="/scaleManage/{{ $scale->id }}">查看</a></span>
                                                     <span><a href="">删除</a></span>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>汉密尔顿焦虑量表</td>
-                                                <td>情绪评定</td>
-                                                <td>14</td>
-                                                <td>有抑郁症状的成年人(医生评定)</td>
-                                                <td>
-                                                    <span><a href="/permissions/2">查看</a></span>
-                                                    <span><a href="">删除</a></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>症状自评量表(SCL-90)</td>
-                                                <td>心理健康检测</td>
-                                                <td>90</td>
-                                                <td>16周岁及以上人群</td>
-                                                <td>
-                                                    <span><a href="">查看</a></span>
-                                                    <span><a href="">删除</a></span>
-                                                </td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

@@ -33,7 +33,7 @@
                 <div class="checkbox">
                     @foreach ($perms as $perm)
                         <label>
-                            {!! Form::checkbox('perm[]',$perm->id,true) !!}
+                            {!! Form::checkbox('perm[]',$perm->id,permCheck($perm,$role)) !!}
                             {{ $perm->display_name or $perm->name }}
                         </label>
                     @endforeach
@@ -42,8 +42,8 @@
             </div>
             <div class="modal-footer">
                 <div class="form-group">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    {!! Form::submit('编辑角色',['class'=>"btn btn-default"]) !!}
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                    {!! Form::submit('编辑角色',['class'=>"btn btn-primary"]) !!}
                 </div>
                     {!! Form::close() !!}
 
