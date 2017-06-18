@@ -25,15 +25,17 @@
             <div class="page-content-area">
                 <div class="row">
                     <!--必须整体包含在这里-->
+                    @include('flash::message')
                     <div class="col-xs-12">
                         <div class="row">
                             <!--正文-->
+                            @role('user')
                             <div class="col-xs-12 col-sm-6 widget-container-col ui-sortable">
                                 <div class="widget-box ui-sortable-handle" style="min-height:250px">
                                     <!-- #section:custom/widget-box.options -->
                                     <div class="widget-header">
                                         <h5 class="widget-title bigger lighter">
-                                            预警报告
+                                            未完成量表
                                         </h5>
                                     </div>
 
@@ -46,23 +48,86 @@
                                                     <th>
                                                         序号
                                                     </th>
-
                                                     <th>
-                                                        登录名
+                                                        用户名
                                                     </th>
                                                     <th>
                                                         量表名称
                                                     </th>
                                                     <th class="hidden-480">操作</th>
+                                                    <th>状态</th>
                                                 </tr>
                                                 </thead>
+                                                <tbody>
+                                                <?php $i = 1; ?>
+                                                @foreach($scales as $scale)
+                                                            <tr>
+                                                                <td>{{ $i++ }}</td>
+                                                                <td>{{ $scale->name }}</td>
+                                                                <td>{{  $scale->title  }}</td>
+                                                                <td><a href="/scale/{{ $scale->id }}">测试</a>
+                                                                    <a href="/scale/fDelete/{{ $scale->id }}">删除</a>
+                                                                </td>
+                                                                <td>未完成</td>
+                                                            </tr>
+                                                @endforeach
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- /.span -->
+                            <div class="col-xs-12 col-sm-6 widget-container-col ui-sortable">
+                                <div class="widget-box ui-sortable-handle" style="min-height:250px">
+                                    <!-- #section:custom/widget-box.options -->
+                                    <div class="widget-header">
+                                        <h5 class="widget-title bigger lighter">
+                                            已完成量表
+                                        </h5>
+                                    </div>
 
+                                    <!-- /section:custom/widget-box.options -->
+                                    <div class="widget-body">
+                                        <div class="widget-main no-padding">
+                                            <table id="warning" class="table table-striped table-bordered table-hover">
+                                                <thead class="thin-border-bottom">
+                                                <tr>
+                                                    <th>
+                                                        序号
+                                                    </th>
+                                                    <th>
+                                                        用户名
+                                                    </th>
+                                                    <th>
+                                                        量表名称
+                                                    </th>
+                                                    <th class="hidden-480">操作</th>
+                                                    <th>状态</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php $i = 1; ?>
+                                                @foreach($DoneScales as $scale)
+                                                    <tr>
+                                                        <td>{{ $i++ }}</td>
+                                                        <td>{{ $scale->name }}</td>
+                                                        <td>{{  $scale->title  }}</td>
+                                                        <td><a href="/gaugecheck/{{ $scale->id }}">查看结果</a>
+                                                            <a href="/scale/fDelete/{{ $scale->id }}">删除</a>
+                                                        </td>
+                                                        <td>已完成</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endrole
+
+                            @role('counselor')
                             <div class="col-xs-12 col-sm-6 widget-container-col ui-sortable">
                                 <div class="widget-box ui-sortable-handle" style="min-height:250px">
                                     <!-- #section:custom/widget-box.options -->
@@ -89,21 +154,81 @@
                                                         预约时间
                                                     </th>
                                                     <th class="hidden-480">预约状态</th>
+                                                    <th>操作</th>
                                                 </tr>
                                                 </thead>
-
                                                 <tbody>
-
+                                                <?php $i=1; ?>
+                                                @foreach($orders as $order)
+                                                    <tr>
+                                                        <td>{{ $i++ }}</td>
+                                                        <td>{{ $order->user_name }}</td>
+                                                        <td>{{ $order->date }}</td>
+                                                        <td>未审核</td>
+                                                        <td>
+                                                            <a href="/order/{{ $order->id }}">审核</a>
+                                                            <a href="/order/delete/{{ $order->id }}">删除</a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.span -->
-                        </div>
-                        <!-- /.row -->
-                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 widget-container-col ui-sortable">
+                                <div class="widget-box ui-sortable-handle" style="min-height:250px">
+                                    <!-- #section:custom/widget-box.options -->
+                                    <div class="widget-header">
+                                        <h5 class="widget-title bigger lighter">
+                                            已处理预约
+                                        </h5>
+
+                                    </div>
+                                    <!-- /section:custom/widget-box.options -->
+                                    <div class="widget-body">
+                                        <div class="widget-main no-padding">
+                                            <table id="appointment" class="table table-striped table-bordered table-hover">
+                                                <thead class="thin-border-bottom">
+                                                <tr>
+                                                    <th>
+                                                        序号
+                                                    </th>
+
+                                                    <th>
+                                                        预约人
+                                                    </th>
+                                                    <th>
+                                                        预约时间
+                                                    </th>
+                                                    <th class="hidden-480">预约状态</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php $i=1; ?>
+                                                @foreach($DoneOrder as $order)
+                                                    <tr>
+                                                        <td>{{ $i++ }}</td>
+                                                        <td>{{ $order->user_name }}</td>
+                                                        <td>{{ $order->date }}</td>
+                                                        <td>已审核</td>
+                                                        <td>
+                                                            <a href="/order/back/{{ $order->id }}">撤销审核</a>
+                                                            <a href="/order/delete/{{ $order->id }}">删除</a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endrole
+
+                            @role('admin')
                             <div class="col-xs-12 col-sm-6 widget-container-col ui-sortable">
                                 <div class="widget-box ui-sortable-handle" style="min-height:250px">
                                     <!-- #section:custom/widget-box.options -->
@@ -125,25 +250,97 @@
                                                     </th>
 
                                                     <th>
-                                                        登录名
+                                                        用户名
                                                     </th>
+                                                    <th>
+                                                        性别
+                                                    </th>
+                                                    <th>状态</th>
                                                     <th>
                                                         <i class="ace-icon fa fa-clock-o"></i> 申请时间
                                                     </th>
                                                     <th class="hidden-480">操作</th>
                                                 </tr>
                                                 </thead>
-
                                                 <tbody>
-
+                                                <?php $i=1; ?>
+                                                @foreach($applies as $apply)
+                                                    <td>{{ $i++ }}</td>
+                                                    <td>{{ $apply->name }}</td>
+                                                    <td>{{  $apply->sex == 'man'? '男':'女' }}</td>
+                                                    <td>未审核</td>
+                                                    <td>{{ $apply->updated_at }}</td>
+                                                    <td>
+                                                        <a href="/dealApply/{{ $apply->user_id }}">审核</a>
+                                                        <a href="dealApply/delete/{{ $apply->id }}">删除</a>
+                                                    </td>
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.span -->
+                            <div class="col-xs-12 col-sm-6 widget-container-col ui-sortable">
+                                <div class="widget-box ui-sortable-handle" style="min-height:250px">
+                                    <!-- #section:custom/widget-box.options -->
+                                    <div class="widget-header">
+                                        <h5 class="widget-title bigger lighter">
+                                            已审核成员
+                                        </h5>
 
+                                    </div>
+
+                                    <!-- /section:custom/widget-box.options -->
+                                    <div class="widget-body">
+                                        <div class="widget-main no-padding">
+                                            <table id="examine" class="table table-striped table-bordered table-hover">
+                                                <thead class="thin-border-bottom">
+                                                <tr>
+                                                    <th>
+                                                        序号
+                                                    </th>
+
+                                                    <th>
+                                                        用户名
+                                                    </th>
+                                                    <th>
+                                                        性别
+                                                    </th>
+                                                    <th>状态</th>
+                                                    <th>
+                                                        <i class="ace-icon fa fa-clock-o"></i> 申请时间
+                                                    </th>
+                                                    <th class="hidden-480">操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php $i=1; ?>
+                                                @foreach($DoneApplies as $apply)
+                                                    <td>{{ $i++ }}</td>
+                                                    <td>{{ $apply->name }}</td>
+                                                    <td>{{  $apply->sex == 'man'? '男':'女' }}</td>
+                                                    <td>已审核</td>
+                                                    <td>{{ $apply->updated_at }}</td>
+                                                    <td>
+                                                        <a href="/backDeal/{{ $apply->user_id }}">撤销审核</a>
+                                                        <a href="dealApply/delete/{{ $apply->id }}">删除</a>
+                                                    </td>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endrole
+
+                            <!-- /.span -->
+                        </div>
+                        <!-- /.row -->
+                        <div class="row">
+                            <!-- /.span -->
+                            @role('user')
                             <div class="col-xs-12 col-sm-6 widget-container-col ui-sortable">
                                 <div class="widget-box ui-sortable-handle" style="min-height:250px">
                                     <!-- #section:custom/widget-box.options -->
@@ -182,6 +379,40 @@
                                 </div>
                             </div>
                             <!-- /.span -->
+                            <div class="col-xs-12 col-sm-6 widget-container-col ui-sortable">
+                                <div class="widget-box ui-sortable-handle" style="min-height:250px">
+                                    <!-- #section:custom/widget-box.options -->
+                                    <div class="widget-header">
+                                        <h5 class="widget-title bigger lighter">
+                                            预警报告
+                                        </h5>
+                                    </div>
+
+                                    <!-- /section:custom/widget-box.options -->
+                                    <div class="widget-body">
+                                        <div class="widget-main no-padding">
+                                            <table id="warning" class="table table-striped table-bordered table-hover">
+                                                <thead class="thin-border-bottom">
+                                                <tr>
+                                                    <th>
+                                                        序号
+                                                    </th>
+
+                                                    <th>
+                                                        用户名
+                                                    </th>
+                                                    <th>
+                                                        量表名称
+                                                    </th>
+                                                    <th class="hidden-480">操作</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endrole
                         </div>
                         <!-- /.row -->
                     </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateScalesTable extends Migration
+class CreateApplicationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateScalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('scales', function (Blueprint $table) {
+        Schema::create('applications', function (Blueprint $table) {
             $table->increments('id');
-            $table->String('name');
-            $table->String('title');
-            $table->integer('user_id');
-            $table->integer('from_id');
-            $table->string('total')->default(0);
-            $table->string('number')->nullable();
-            $table->boolean('completed')->default(0);
+            $table->string('name');
+            $table->string('sex');
+            $table->integer('user_id')->unique();
+            $table->boolean('status');
             $table->boolean('is_remove')->default(0);
             $table->timestamps();
         });
@@ -34,6 +31,6 @@ class CreateScalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scales');
+        Schema::dropIfExists('applications');
     }
 }

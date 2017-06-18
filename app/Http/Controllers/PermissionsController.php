@@ -39,6 +39,7 @@ class PermissionsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * 添加新的权限
      */
     public function store(PermissionRequest $request)
     {

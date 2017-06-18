@@ -4,10 +4,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Scale extends Model
+class Application extends Model
 {
     protected $fillable = [
-        'name','role_name','user_id','title','number','total','from_id'
+        'user_id', 'status','name','sex'
     ];
 
     public function user()

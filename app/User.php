@@ -48,4 +48,19 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Model\Permission');
     }
+
+    public function scale()
+    {
+        return $this->hasMany('App\Model\Scale');
+    }
+
+    public function application()
+    {
+        return $this->hasOne('App\Model\Application');
+    }
+
+    public function information()
+    {
+        return $this->hasOne('App\Model\Information');
+    }
 }

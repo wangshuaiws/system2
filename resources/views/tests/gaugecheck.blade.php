@@ -49,7 +49,6 @@
                                                         <?php $i = 1; ?>
                                                         @foreach($scales as $scale)
                                                             @if($scale->completed == 1)
-                                                            @if($scale->is_remove == 0)
                                                                 <tr>
                                                                     <td>{{ $i++ }}</td>
                                                                     <td>{{ $scale->name }}</td>
@@ -57,7 +56,6 @@
                                                                     <td>{{ $scale->updated_at }}</td>
                                                                     <td>{{ $scale->total }}</td>
                                                                 </tr>
-                                                            @endif
                                                             @endif
                                                         @endforeach
                                                         </tbody>
@@ -102,7 +100,7 @@
             </script>
             <script src="../assets/js2/bootstrap.min.js"></script>
 
-            <script src="{{ asset('Chart.min.js') }}"></script>
+            <script src="{{ asset('js/Chart.min.js') }}"></script>
             <!-- 抑郁表测试结果 -->
             @foreach($scales as $scale)
                 @if($scale->title == '汉密尔顿抑郁量表')
@@ -167,9 +165,7 @@
                 })
             </script>
                 @endif
-            @endforeach
 
-            @foreach($scales as $scale)
                 @if($scale->title == '汉密尔顿焦虑量表')
                     <script>
                         $(document).ready(function () {
@@ -250,11 +246,4 @@
             <!-- ace scripts -->
             <script src="../assets/js2/ace-elements.min.js"></script>
             <script src="../assets/js2/ace.min.js"></script>
-            <!--<script>
-                $(function(){
-                    $($(".light-blue")[1]).on("click",function(){
-                        window.location="index.html";
-                    }); 
-                });
-            </script>-->
 @endsection

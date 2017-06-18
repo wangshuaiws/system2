@@ -30,13 +30,14 @@
                         <!--必须整体包含在这里-->
                         <div class="col-xs-12">
                             <div class="row">
+                                    @include('flash::message')
                                 <!--正文-->
 
                                 <div class="col-sm-12">
                                     <div class="container-fluid">
                                         <div class="row">
                                             @foreach($roles as $role)
-                                            {!! Form::open(['method' => 'get','route' => ['permissions.edit',$role->name]]) !!}
+                                            {!! Form::open(['url' => ['scale/allot']]) !!}
                                             @endforeach
                                             <div class="col-md-7 scroll widget-box ui-sortable-handle" style="min-height:250px">
                                                 <div class="widget-header">
@@ -74,12 +75,10 @@
 													量表选择
 												</h5>
                                                 </div>
-                                                {!! Form::checkbox('depressed', '汉密尔顿抑郁量表') !!}汉密尔顿抑郁量表
-                                                <br>
-                                                {!! Form::checkbox('anxious', '汉密尔顿焦虑量表') !!}汉密尔顿焦虑量表
-                                                <br>
-                                                {!! Form::checkbox('symptom', '症状自评量表(SCL-90)') !!}症状自评量表(SCL-90)
-                                                <br>
+                                                @foreach($exist_scales as $exist_scale)
+                                                {!! Form::checkbox($exist_scale->name,$exist_scale->title) !!}{{ $exist_scale->title }}
+                                                    <br/>
+                                                 @endforeach
                                             </div>
                                             <div class="col-md-12 foot text-center">
                                                 {!! Form::submit('分配',['class'=>"btn btn-sm btn-info"]) !!}
@@ -98,23 +97,22 @@
                                                         <tr>
                                                             <th>序号</th>
                                                             <th>量表名称</th>
-                                                            <th>登录名</th>
-                                                            <th>姓名</th>
+                                                            <th>用户名</th>
                                                             <th>分配时间</th>
                                                             <th>作答状态</th>
                                                             <th>操作</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                    <?php $i = 1 ?>
                                                     @foreach($scales as $scale)
                                                     <tr>
-                                                            <td>{{ $scale->id }}</td>
+                                                            <td>{{ $i++ }}</td>
                                                             <td>{{ $scale->title }}</td>
-                                                            <td>{{ $scale->name }}</td>
                                                             <td>{{ $scale->name }}</td>
                                                             <td>{{ $scale->updated_at }}</td>
                                                             <td>{{ $scale->completed == 1? '已完成':'未完成' }}</td>
-                                                            <td><a href="">查看</a></td>
+                                                            <td><a href="/scale/fDelete/{{ $scale->id }}">删除到回收站</a></td>
                                                     </tr>
                                                     @endforeach
                                                     </tbody>
@@ -174,11 +172,4 @@
             <!-- ace scripts -->
             <script src="../assets/js2/ace-elements.min.js"></script>
             <script src="../assets/js2/ace.min.js"></script>
-            <script>
-                $(function(){
-                    $($(".light-blue")[1]).on("click",function(){
-                        window.location="index.html";
-                    }); 
-                });
-            </script>
 @endsection

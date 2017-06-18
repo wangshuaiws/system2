@@ -1,6 +1,7 @@
 @extends('layouts.app')
-        <!-- 主体 -->
+        <!-- /.nav-list -->
 @section('content')
+        <!-- 主体 -->
         <div class="main-content">
             <!-- #section:basics/content.breadcrumbs -->
             <div class="breadcrumbs" id="breadcrumbs">
@@ -15,9 +16,8 @@
                         <i class="ace-icon fa fa-home home-icon"></i>
                         <a href="{{ url('/home') }}">首页</a>
                     </li>
-                    <li>档案管理</li>
-                    <li class="active">个案档案</li>
-                    <!--	<li class="active">Dashboard</li>-->
+                    <li>危机预警</li>
+                    <li class="active">查看预警</li>
                 </ul>
                 <!-- /.breadcrumb -->
             </div>
@@ -29,20 +29,36 @@
                         <!--必须整体包含在这里-->
                         <div class="col-xs-12">
                             <div class="row">
+                                @include('flash::message')
                                 <!--正文-->
                                 <div class="col-sm-12">
-                                    <table id="test" class="table table-striped table-bordered table-hover dataTable">
-                                <thead>
-                                    <tr>
-                                        <th>序号</th>
-                                        <th>个案备号</th>
-                                        <th>登录名</th>
-                                        <th>姓名</th>
-                                        <th>结案时间</th>
-                                        <th>操作</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>序号</th>
+                                                <th>登录名</th>
+                                                <th>性别</th>
+                                                <th>量表名称</th>
+                                                <th>查看报告</th>
+                                                <th>添加预约</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php $i = 1; ?>
+                                        @foreach($scales as $scale)
+                                            <tr>
+                                                <td>{{ $i++ }}</td>
+                                                <td>{{ user()->name }}</td>
+                                                <td>{{ user()->sex }}</td>
+                                                <td>{{ $scale->title }}</td>
+                                                <td>{{ $scale->total }}</td>
+                                                <td><a href="/appointmy">预约</a></td>
+                                                <td><a href="/scale/fDelete/{{ $scale->id }}">删除</a></td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <!--/.row-->
@@ -53,11 +69,12 @@
                     <!-- /.page-content -->
                 </div>
                 <!-- /.main-content -->
+
+
                 <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
                     <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
                 </a>
             </div>
-        </div>
             <!-- /.main-container -->
 
             <!-- basic scripts -->
@@ -95,4 +112,11 @@
             <!-- ace scripts -->
             <script src="../assets/js2/ace-elements.min.js"></script>
             <script src="../assets/js2/ace.min.js"></script>
+            <script>
+                $(function(){
+                    $($(".light-blue")[1]).on("click",function(){
+                        window.location="index.html";
+                    }); 
+                });
+            </script>
 @endsection

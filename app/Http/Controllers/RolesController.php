@@ -27,6 +27,10 @@ class RolesController extends Controller
         $this->perm = $perm;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 展示角色管理的界面
+     */
     public function index()
     {
         $roles = $this->role->getWith('perms');
@@ -49,6 +53,7 @@ class RolesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * 创建角色逻辑
      */
     public function store(RoleRequest $request)
     {
@@ -93,6 +98,7 @@ class RolesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * 更新用户的角色
      */
     public function update(Request $request, $id)
     {
@@ -105,6 +111,7 @@ class RolesController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * 删除角色
      */
     public function destroy($id)
     {

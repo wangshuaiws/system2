@@ -132,9 +132,6 @@
                     $dateSelect.on('hide', function (e) {
                         $('#date').data('bootstrapValidator').updateStatus('dateSelect', 'NOT_VALIDATED', null).validateField('dateSelect');
                     });
-                    $($(".light-blue")[1]).on("click",function(){
-                        window.location="index.html";
-                    }); 
                 });
             </script>
 

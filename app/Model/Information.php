@@ -4,14 +4,13 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Scale extends Model
+class Information extends Model
 {
     protected $fillable = [
-        'name','role_name','user_id','title','number','total','from_id'
+        'name', 'ways', 'places','type'
     ];
-
     public function user()
     {
-        return $this->belongsTo('App\User');
+        $this->belongsTo('App\User');
     }
 }

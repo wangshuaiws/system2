@@ -55,6 +55,7 @@
             font-size:14px;
             border-radius:4px;
         }
+
     </style>
 </head>
 
@@ -81,6 +82,7 @@
 
         <!--头部-->
         <div class="navbar-header pull-left">
+
             <!-- #section:basics/navbar.layout.brand -->
             <a href="home.html" class="navbar-brand">
                 <small>
@@ -207,10 +209,10 @@
                 <!-- #section:basics/navbar.user_menu -->
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" />
+                        <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Photo" />
                             <span class="user-info">
 									<small>欢迎登录,</small>
-									Jason
+                                {{ Auth::user()->name }}
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
@@ -218,7 +220,7 @@
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="">
+                            <a href="{{ url('/profile') }}">
                                 <i class="ace-icon fa fa-user"></i> 个人资料
                             </a>
                         </li>
@@ -246,9 +248,6 @@
 
 <!-- /section:basics/navbar.layout -->
 <div class="main-container" id="main-container">
-    <div class="container">
-        @include('flash::message')
-    </div>
     <script type="text/javascript">
         try {
             ace.settings.check('main-container', 'fixed')
@@ -343,11 +342,18 @@
                     </li>
                     @endpermission
                     <li class="">
+                        @role('user')
+                        <a href="{{ url('/gaugeShow') }}">
+
+                            <i class="menu-icon fa fa-caret-right"></i> 查看测试结果
+                        </a>
+                        @endrole
+                        @permission('psychological_test')
                         <a href="{{ url('/home') }}">
 
-                            <i class="menu-icon fa fa-caret-right"></i> @role('user')查看测试结果@endrole
-                            @permission('psychological_test') 我的审核 @endpermission
+                            <i class="menu-icon fa fa-caret-right"></i> 我的审核
                         </a>
+                        @endpermission
 
                         <b class="arrow"></b>
                     </li>
@@ -430,9 +436,8 @@
                 </a>
 
                 <b class="arrow"></b>
-
                 <ul class="submenu">
-                    @permission('Reservation_consultation')
+                    @if(user()->permission)
                     <li class="">
                         <a href="{{ url('/appointsetting') }}">
                             <i class="menu-icon fa fa-caret-right"></i> 参数设置
@@ -440,9 +445,9 @@
 
                         <b class="arrow"></b>
                     </li>
-
+                    @role('counselor')
                     <li class="">
-                        <a href="{{ url('/appointmanage') }}">
+                        <a href="{{ url('/home') }}">
                             <i class="menu-icon fa fa-caret-right"></i> 预约管理
                         </a>
 
@@ -456,7 +461,8 @@
 
                         <b class="arrow"></b>
                     </li>
-                    @endpermission
+                        @endrole
+                    @endif
                     @role('user')
                     <li class="">
                         <a href="{{ url('/appointmy') }}">

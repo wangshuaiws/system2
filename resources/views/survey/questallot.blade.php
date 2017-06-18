@@ -191,9 +191,6 @@
                     });
 
                 });
-                    $($(".light-blue")[1]).on("click",function(){
-                        window.location="index.html";
-                    });
             </script>
 
             <!-- ace scripts -->

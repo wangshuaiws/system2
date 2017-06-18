@@ -30,6 +30,7 @@
                         <!--必须整体包含在这里-->
                         <div class="col-xs-12">
                             <div class="row">
+                            @include('flash::message')
                                 <!--正文-->
                                 <div class="col-sm-12">
                                     <table class="table table-striped table-bordered table-hover text-center">
@@ -52,7 +53,7 @@
                                                 <td>{{ $scale->for_which }}</td>
                                                 <td>
                                                     <span><a href="/scaleManage/{{ $scale->id }}">查看</a></span>
-                                                    <span><a href="">删除</a></span>
+                                                    <span><a href="/scaleManage/delete/{{ $scale->id }}">删除</a></span>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -108,11 +109,4 @@
             <!-- ace scripts -->
             <script src="../assets/js2/ace-elements.min.js"></script>
             <script src="../assets/js2/ace.min.js"></script>
-            <script>
-                $(function(){
-                    $($(".light-blue")[1]).on("click",function(){
-                        window.location="index.html";
-                    }); 
-                });
-            </script>
 @endsection

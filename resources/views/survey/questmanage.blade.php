@@ -93,11 +93,4 @@
             <!-- ace scripts -->
             <script src="../assets/js2/ace-elements.min.js"></script>
             <script src="../assets/js2/ace.min.js"></script>
-            <script>
-                $(function(){
-                    $($(".light-blue")[1]).on("click",function(){
-                        window.location="index.html";
-                    }); 
-                });
-            </script>
 @endsection

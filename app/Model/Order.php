@@ -4,14 +4,14 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Scale extends Model
+class Order extends Model
 {
     protected $fillable = [
-        'name','role_name','user_id','title','number','total','from_id'
+        'user_name', 'order_name', 'status','date'
     ];
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany('App\User');
     }
 }

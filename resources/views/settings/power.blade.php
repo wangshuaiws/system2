@@ -335,9 +335,6 @@
                             return false;
                         }
                     });
-                    $($(".light-blue")[1]).on("click", function () {
-                        window.location = "index.html";
-                    });
                 });
 
                 function onckeckradio(sid, value) {

@@ -29,9 +29,10 @@
                         <!--必须整体包含在这里-->
                         <div class="col-md-12">
                             <div class="row">
+                            @include('flash::message')
                                 <!--正文-->
                                 <div class="col-md-12">
-                                    {!! Form::open(['route'=>['permissions.create'],'class'=>'form-horizontal','method'=>'get']) !!}
+                                    {!! Form::open(['url'=>'/appointmy/order','class'=>'form-horizontal']) !!}
                                         <div class="form-group">
                                             {!! Form::label('date','预约日期',['class'=>'col-md-3 control-label'] )!!}
                                             <div class="col-md-2">
@@ -44,9 +45,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::label('namelist','咨询师',['class'=>'col-md-3 control-label'] )!!}
+                                            {!! Form::label('nameList','咨询师',['class'=>'col-md-3 control-label'] )!!}
                                             <div class="col-md-2">
-                                                {!! Form::select('namelist',$role_manage) !!}
+                                                {!! Form::select('nameList',$role_manage) !!}
                                             </div>
 
                                         </div>
@@ -224,10 +225,6 @@
                     $dateSelect.on('hide', function (e) {
                         $('#date').data('bootstrapValidator').updateStatus('dateSelect', 'NOT_VALIDATED', null).validateField('dateSelect');
                     });
-
-                    $($(".light-blue")[1]).on("click",function(){
-                        window.location="index.html";
-                    }); 
                 });
             </script>
 

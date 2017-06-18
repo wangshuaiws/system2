@@ -29,75 +29,85 @@
                         <!--必须整体包含在这里-->
                         <div class="col-xs-12">
                             <div class="row">
+                                @include('flash::message')
                                 <!--正文-->
                                 <div class="col-sm-12">
                                     <div class="tabbable">
 
                                         <ul id="tab" class="nav nav-tabs tab-color-blue background-blue">
                                             <li class="active">
-                                                <a href="#means" data-toggle="tab">咨询方式</a>
-                                            </li>
-                                            <li>
-                                                <a href="#place" data-toggle="tab">咨询地点</a>
-                                            </li>
-                                            <li>
-                                                <a href="#type" data-toggle="tab">问题类型</a>
+                                                <a href="#means" data-toggle="tab">咨询信息</a>
                                             </li>
                                         </ul>
 
                                         <div class="tab-content">
                                             <div class="tab-pane in active" id="means">
                                                 <div class="widget-header widget-hea1der-small">
-                                                    <h5 style="display:inline;float:left">咨询方式</h5>
+                                                    <h5 style="display:inline;float:left">咨询信息</h5>
                                                     <div class="widget-toolbar align-middle" style=" width: 100px">
-                                                        <a class="btn btn-xs btn-info" href="javascript:void(0)" onclick="CAdd()" style="width: 83px"><i class="ui-icon ace-icon fa fa-plus center bigger-110 white">
-                                                            </i>新增</a>
+                                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+                                                            <i class="ui-icon ace-icon fa fa-plus center bigger-110 white"></i>新增
+                                                        </button>
+                                                        <!-- Button trigger modal -->
+
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                        <h4 class="modal-title" id="myModalLabel">添加信息</h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        {!! Form::open(['url'=>'/appoint/add','method'=>'POST']) !!}
+                                                                        <div class="form-group">
+                                                                            {!! Form::label('name','咨询方式 :',['class'=>'control-label']) !!}
+                                                                            {!! Form::text('name',null,['class'=>'form-control']) !!}
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            {!! Form::label('place','咨询地点 :',['class'=>'control-label']) !!}
+                                                                            {!! Form::text('place',null,['class'=>'form-control']) !!}
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            {!! Form::label('type','问题类型 :',['class'=>'control-label']) !!}
+                                                                            {!! Form::text('type',null,['class'=>'form-control']) !!}
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                                                                        {!! Form::submit('新增',['class'=>'btn btn-primary']) !!}
+                                                                        {!! Form::close() !!}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <table id="means" class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th>名称</th>
-                                                            <th>描述</th>
+                                                            <th>序号</th>
+                                                            <th>登录名</th>
+                                                            <th>咨询方式</th>
+                                                            <th>咨询地点</th>
+                                                            <th>问题类型</th>
                                                             <th>操作</th>
                                                         </tr>
                                                     </thead>
-                                                </table>
-                                            </div>
-                                            <div class="tab-pane" id="place">
-                                                <div class="widget-header widget-hea1der-small">
-                                                    <h5 style="display:inline;float:left">咨询地点</h5>
-                                                    <div class="widget-toolbar align-middle" style=" width: 100px">
-                                                        <a class="btn btn-xs btn-info" href="javascript:void(0)" onclick="CAdd()" style="width: 83px"><i class="ui-icon ace-icon fa fa-plus center bigger-110 white">
-                                                            </i>新增</a>
-                                                    </div>
-                                                </div>
-                                                <table id="means" class="table table-striped table-bordered table-hover">
-                                                    <thead>
+                                                    <tbody>
+                                                    <?php $i = 1; ?>
+                                                    @foreach($information as $value)
                                                         <tr>
-                                                            <th>名称</th>
-                                                            <th>描述</th>
-                                                            <th>操作</th>
+                                                            <td>{{ $i++ }}</td>
+                                                            <td>{{ user()->name }}</td>
+                                                            <td>{{ $value->ways }}</td>
+                                                            <td>{{ $value->places }}</td>
+                                                            <td>{{ $value->type }}</td>
+                                                            <td><a href="/appoint/{{ $value->id }}">删除</a></td>
                                                         </tr>
-                                                    </thead>
-                                                </table>
-                                            </div>
-                                            <div class="tab-pane" id="type">
-                                                 <div class="widget-header widget-hea1der-small">
-                                                    <h5 style="display:inline;float:left">问题类型</h5>
-                                                    <div class="widget-toolbar align-middle" style=" width: 100px">
-                                                        <a class="btn btn-xs btn-info" href="javascript:void(0)" onclick="CAdd()" style="width: 83px"><i class="ui-icon ace-icon fa fa-plus center bigger-110 white">
-                                                            </i>新增</a>
-                                                    </div>
-                                                </div>
-                                                <table id="means" class="table table-striped table-bordered table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>名称</th>
-                                                            <th>描述</th>
-                                                            <th>操作</th>
-                                                        </tr>
-                                                    </thead>
+                                                    @endforeach
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -154,11 +164,4 @@
             <!-- ace scripts -->
             <script src="../assets/js2/ace-elements.min.js"></script>
             <script src="../assets/js2/ace.min.js"></script>
-            <script>
-                $(function(){
-                    $($(".light-blue")[1]).on("click",function(){
-                        window.location="index.html";
-                    }); 
-                });
-            </script>
 @endsection

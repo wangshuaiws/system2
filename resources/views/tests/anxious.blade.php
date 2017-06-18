@@ -16,7 +16,7 @@
                 <a href="{{ url('/home') }}">首页</a>
             </li>
             <li>量表查看</li>
-            @foreach($scale as $value)<li class="active">{{ $value->title }}</li>
+            @foreach($scales as $value)<li class="active">{{ $value->title }}</li>
             <!--	<li class="active">Dashboard</li>-->
         </ul>
         <!-- /.breadcrumb -->
@@ -26,6 +26,7 @@
     <div class="page-content">
         <div class="page-content-area">
             <div class="row">
+                @include('flash::message')
                 <!--必须整体包含在这里-->
                 <div class="col-xs-12">
                     <div class="row">
@@ -34,7 +35,7 @@
                             <h4>汉密尔顿焦虑量表</h4>
                         </div>
                         <div class="tip"><h5>指 导 语： 请根据病人的实际表现选择相应的选项</h5></div>
-                        {!! Form::open(['route'=>['permissions.update',$value->id],'method'=>'patch']) !!}
+                        {!! Form::open(['url'=> ['scale/'.$value->id],'method' => 'post']) !!}
                         <div class="form-group">
                             {!! Form::label('title','1.焦虑心境 :',['class'=>'control-label']) !!}
                             {!! Form::radio('1','0') !!}1.无
@@ -199,11 +200,4 @@
     <!-- ace scripts -->
     <script src="../assets/js2/ace-elements.min.js"></script>
     <script src="../assets/js2/ace.min.js"></script>
-    <script>
-        $(function(){
-            $($(".light-blue")[1]).on("click",function(){
-                window.location="index.html";
-            });
-        });
-    </script>
 @endsection
