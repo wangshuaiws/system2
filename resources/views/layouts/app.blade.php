@@ -12,7 +12,6 @@
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="../assets/css2/bootstrap.min.css" />
     <link rel="stylesheet" href="../assets/css2/font-awesome.min.css" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- page specific plugin styles -->
 
     <!-- text fonts -->
@@ -103,107 +102,10 @@
             <ul class="nav ace-nav">
 
                 <li class="green">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <a href="{{ url('/notifications') }}">
                         <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                        <span class="badge badge-success">5</span>
+                        <span class="badge badge-success"></span>
                     </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i> 5条消息
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#">
-                                        <img src="../assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-                                            <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span> Ciao sociis natoque penatibus et auctor ...
-                                            </span>
-
-                                            <span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-                                            </span>
-                                            </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="../assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-                                            <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span> Vestibulum id ligula porta felis euismod ...
-                                            </span>
-
-                                            <span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-                                            </span>
-                                            </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="../assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-                                            <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span> Nullam quis risus eget urna mollis ornare ...
-                                            </span>
-
-                                            <span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-                                            </span>
-                                            </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="../assets/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
-                                            <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span> Ciao sociis natoque eget urna mollis ornare ...
-                                            </span>
-
-                                            <span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-                                            </span>
-                                            </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <img src="../assets/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
-                                            <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span> Vestibulum id penatibus et auctor ...
-                                            </span>
-
-                                            <span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-                                            </span>
-                                            </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="inbox.html">
-                                查看所有消息
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
                 <!-- #section:basics/navbar.user_menu -->
@@ -274,20 +176,6 @@
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li class="">
-                        <a href="{{ url('/settings') }}">
-                            <i class="menu-icon fa fa-caret-right"></i> 系统设置
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="">
-                        <a href="{{ url('/databackup') }}">
-                            <i class="menu-icon fa fa-caret-right"></i> 数据备份
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
                     <li class="">
                         <a href="{{ url('/roles') }}">
                             <i class="menu-icon fa fa-caret-right"></i> 角色管理
@@ -474,53 +362,6 @@
                     @endrole
                 </ul>
             </li>
-            @role('admin')
-            <li class="">
-                <a href="#" class="dropdown-toggle">
-                    <i class="menu-icon fa fa-book"></i>
-                    <span class="menu-text">档案管理 </span>
-
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-
-                <b class="arrow"></b>
-
-                <ul class="submenu">
-                    <li class="">
-                        <a href="{{ url('/archivestest') }}">
-                            <i class="menu-icon fa fa-caret-right"></i> 测评档案
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="{{ url('/archivespersonal') }}">
-                            <i class="menu-icon fa fa-caret-right"></i> 个案档案
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="{{ url('/archivesquest') }}">
-                            <i class="menu-icon fa fa-caret-right"></i> 问卷档案
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="{{ url('/archivesall') }}">
-                            <i class="menu-icon fa fa-caret-right"></i> 综合档案
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-            @endrole
-
             <li class="">
                 <a href="{{ url('/recycle') }}">
                     <i class="menu-icon fa fa-trash-o"></i>

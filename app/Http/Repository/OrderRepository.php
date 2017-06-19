@@ -3,6 +3,8 @@
 namespace App\Http\Repository;
 
 use App\Model\Order;
+use App\Notifications\DealOrderNotification;
+use App\User;
 
 class OrderRepository
 {
@@ -16,6 +18,10 @@ class OrderRepository
     {
         $orders = Order::findOrFail($id);
         $orders->status = $status;
+        if($status) {
+            $user = User::where('name',$orders->user_name)->first();
+            $user->notify(new DealOrderNotification());
+        }
         if($orders->save()) {
             return flash('操作成功','success')->important();
         }

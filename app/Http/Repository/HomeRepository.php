@@ -5,6 +5,8 @@ namespace App\Http\Repository;
 use App\Model\Order;
 use App\Model\Application;
 use App\Model\Role;
+use App\Notifications\BackDealNotification;
+use App\Notifications\DealApplyNotification;
 use App\User;
 
 class HomeRepository
@@ -107,6 +109,7 @@ class HomeRepository
         $user->attachRole($role_manage);
         $users = Role::where('name','user')->first();
         $user->roles()->detach($users);
+        $user->notify(new DealApplyNotification());
         return flash('审核成功','success')->important();
     }
 
@@ -128,6 +131,7 @@ class HomeRepository
         $user->attachRole($users);
         $role_manage = Role::where('name','counselor')->first();
         $user->roles()->detach($role_manage);
+        $user->notify(new BackDealNotification());
         return flash('撤销审核成功,该用户已不是咨询师','success')->important();
     }
 
@@ -166,5 +170,14 @@ class HomeRepository
     {
         Application::find($id)->delete();
         return flash('已彻底删除','danger')->important();
+    }
+
+    public function check($name)
+    {
+        $user = User::where('name',$name)->first();
+        if($user) {
+            return true;
+        }
+        return false;
     }
 }

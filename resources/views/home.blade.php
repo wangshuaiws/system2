@@ -265,6 +265,7 @@
                                                 <tbody>
                                                 <?php $i=1; ?>
                                                 @foreach($applies as $apply)
+                                                    <tr>
                                                     <td>{{ $i++ }}</td>
                                                     <td>{{ $apply->name }}</td>
                                                     <td>{{  $apply->sex == 'man'? '男':'女' }}</td>
@@ -274,6 +275,7 @@
                                                         <a href="/dealApply/{{ $apply->user_id }}">审核</a>
                                                         <a href="dealApply/delete/{{ $apply->id }}">删除</a>
                                                     </td>
+                                                    <tr>
                                                 @endforeach
                                                 </tbody>
                                             </table>
@@ -317,6 +319,7 @@
                                                 <tbody>
                                                 <?php $i=1; ?>
                                                 @foreach($DoneApplies as $apply)
+                                                    <tr>
                                                     <td>{{ $i++ }}</td>
                                                     <td>{{ $apply->name }}</td>
                                                     <td>{{  $apply->sex == 'man'? '男':'女' }}</td>
@@ -326,6 +329,7 @@
                                                         <a href="/backDeal/{{ $apply->user_id }}">撤销审核</a>
                                                         <a href="dealApply/delete/{{ $apply->id }}">删除</a>
                                                     </td>
+                                                    </tr>
                                                 @endforeach
                                                 </tbody>
                                             </table>
@@ -394,19 +398,27 @@
                                             <table id="warning" class="table table-striped table-bordered table-hover">
                                                 <thead class="thin-border-bottom">
                                                 <tr>
-                                                    <th>
-                                                        序号
-                                                    </th>
-
-                                                    <th>
-                                                        用户名
-                                                    </th>
-                                                    <th>
-                                                        量表名称
-                                                    </th>
-                                                    <th class="hidden-480">操作</th>
+                                                    <th>序号</th>
+                                                    <th>登录名</th>
+                                                    <th>量表名称</th>
+                                                    <th>报告结果</th>
+                                                    <th>添加预约</th>
+                                                    <th>操作</th>
                                                 </tr>
                                                 </thead>
+                                                <tbody>
+                                                <?php $i = 1; ?>
+                                                @foreach($DoneScales as $scale)
+                                                    <tr>
+                                                        <td>{{ $i++ }}</td>
+                                                        <td>{{ $scale->name }}</td>
+                                                        <td>{{  $scale->title  }}</td>
+                                                        <td>{{ $scale->total }}</td>
+                                                        <td><a href="{{ url('appointmy') }}">预约</a></td>
+                                                        <td><a href="/scale/fDelete/{{ $scale->id }}">删除</a></td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>

@@ -15,6 +15,8 @@
     return view('index');
 });*/
 
+Route::post('user/check','HomeController@check');
+
 Auth::routes();
 Route::get('email/verify/{token}', ['as'=>'email.verify','uses'=>'EmailController@verify']);
 
@@ -120,6 +122,9 @@ Route::get('order/delete/{id}','OrderController@orderDelete');
 Route::get('order/back/{id}','OrderController@orderBack');
 Route::get('order/restore/{id}','OrderController@restore');
 Route::get('order/tDelete/{id}','OrderController@tDelete');
+
+//私信通知
+Route::get('notifications','NotificationsController@index');
 
 //回收站 显示
 Route::get('/recycle','RecycleController@recycleShow');

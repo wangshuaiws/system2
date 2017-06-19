@@ -3,6 +3,7 @@
 namespace App\Http\Repository;
 
 use App\Model\Scale;
+use App\Notifications\ScaleAllotNotification;
 use Illuminate\Support\Facades\DB;
 
 class ScaleRepository
@@ -29,6 +30,7 @@ class ScaleRepository
                             'title' => $b,
                             'from_id' => user()->id
                         ]);
+                        $user->notify(new ScaleAllotNotification());
                         return flash('分配成功','success')->important();
                     } else {
                         return flash('记录已存在,不可重复插入','danger')->important();

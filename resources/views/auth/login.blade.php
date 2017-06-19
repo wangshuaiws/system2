@@ -210,7 +210,7 @@
                                             <label class="col-sm-3 control-label">用户名</label>
                                             <div class="col-sm-8">
                                                     <span class="block input-icon input-icon-right">
-                                                    <input type="text" class="form-control" name="name"
+                                                    <input type="text" class="form-control" name="name" id="registerUser"
                                                            data-bv-message="用户名不能为空"
                                                            data-bv-notempty="true"
                                                            data-bv-notempty-message="用户名不能为空"
@@ -222,6 +222,7 @@
                                                            data-bv-stringlength-message="用户名为3-20个字符">
                                                     <i class="ace-icon fa fa-user"></i>
                                                     </span>
+                                                <small id="checkUser" data-bv-for="name" class="help-block" data-bv-result="VALID" style="display:none;">用户名已存在,请更改</small>
                                             </div>
 
                                         </div>
@@ -388,6 +389,30 @@
     });
 </script>
 <script>
+    $(document).ready(function (){
+        $("input[name='name']").on('blur',function() {
+            var data = {
+                name: $('#registerUser').val()
+            };
+            $.ajax({
+                type: "post",
+                url: 'user/check',
+                data: data,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': '{{csrf_token()}}'
+                },
+                success: function(data){
+                    if(data == 111) {
+                        $('#checkUser').css("display","block");
+                        $('#checkUser').css("color","#d16e6c");
+                    }else {
+                        $('#checkUser').css("display","none");
+                    }
+                }
+            });
+        });
+    });
 </script>
 </body>
 

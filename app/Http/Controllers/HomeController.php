@@ -15,8 +15,18 @@ class HomeController extends Controller
      */
     public function __construct(HomeRepository $home)
     {
-        $this->middleware('auth')->except(['middle']);
+        $this->middleware('auth')->except(['middle','check']);
         $this->home = $home;
+    }
+
+    public function check()
+    {
+        $name = $_POST['name'];
+        if($this->home->check($name)) {
+            echo 111;
+        } else {
+            echo 222;
+    }
     }
 
     /**

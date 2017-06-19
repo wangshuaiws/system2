@@ -32,12 +32,12 @@
                             @include('flash::message')
                                 <!--正文-->
                                 <div class="col-md-12">
-                                    {!! Form::open(['url'=>'/appointmy/order','class'=>'form-horizontal']) !!}
+                                    {!! Form::open(['url'=>'/appointmy/order','class'=>'form-horizontal','id' => 'date']) !!}
                                         <div class="form-group">
                                             {!! Form::label('date','预约日期',['class'=>'col-md-3 control-label'] )!!}
                                             <div class="col-md-2">
                                                 <div class="input-group date" id="dateSelect">
-                                                    {!! Form::text('dateSelect',null,['class'=>'form-control']) !!}
+                                                    {!! Form::text('dateSelect',null,['class'=>'form-control','name' => "dateSelect"]) !!}
                                                     <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -167,7 +167,6 @@
             <!-- /.main-container -->
         </div>
             <!-- basic scripts -->
-
             <!--[if !IE]> -->
             <script type="text/javascript">
                 window.jQuery || document.write("<script src='../assets/js2/jquery.min.js'>" + "<" + "/script>");
@@ -200,33 +199,33 @@
             <script src="../assets/js2/date-time/bootstrap-datepicker.min.js"></script>
             <script src="../assets/js2/date-time/locales/bootstrap-datepicker.zh-CN.js"></script>
             <script src="../assets/js2/bootstrapValidator.min.js"></script>
-            <script>
-                $(function () {
-                    var $dateSelect = $("#dateSelect");
-                    if ($dateSelect.type !== 'date') { //if browser doesn't support "date" input
-                        $dateSelect.datepicker({
-                            autoclose: true,
-                            todayHighlight: true,
-                            language: 'zh-CN',
-                            startDate: new Date()
-                        });
-                    }
-                    $('#date').bootstrapValidator({
-                        fields: {
-                            dateSelect: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '日期不能为空'
-                                    }
+        <script>
+            $(function () {
+                var $dateSelect = $("#dateSelect");
+                if ($dateSelect.type !== 'date') { //if browser doesn't support "date" input
+                    $dateSelect.datepicker({
+                        autoclose: true,
+                        todayHighlight: true,
+                        language: 'zh-CN',
+                        startDate: new Date()
+                    });
+                }
+                $('#date').bootstrapValidator({
+                    fields: {
+                        dateSelect: {
+                            validators: {
+                                notEmpty: {
+                                    message: '日期不能为空'
                                 }
                             }
                         }
-                    });
-                    $dateSelect.on('hide', function (e) {
-                        $('#date').data('bootstrapValidator').updateStatus('dateSelect', 'NOT_VALIDATED', null).validateField('dateSelect');
-                    });
+                    }
                 });
-            </script>
+                $dateSelect.on('hide', function (e) {
+                    $('#date').data('bootstrapValidator').updateStatus('dateSelect', 'NOT_VALIDATED', null).validateField('dateSelect');
+                });
+            });
+        </script>
 
             <!-- ace scripts -->
             <script src="../assets/js2/ace-elements.min.js"></script>
