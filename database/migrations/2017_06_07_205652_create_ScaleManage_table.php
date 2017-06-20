@@ -16,6 +16,7 @@ class CreateScaleManageTable extends Migration
         Schema::create('scale_manage', function (Blueprint $table) {
             $table->increments('id');
             $table->String('title');
+			$table->String('name');
             $table->integer('number');
             $table->string('type');
             $table->string('for_which');

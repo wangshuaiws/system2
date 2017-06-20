@@ -57,4 +57,13 @@ class LoginController extends Controller
             'password' => $request->get('password')
         ];
     }
+	/*
+	 protected function attemptLogin(Request $request)
+    {
+        $credentials = array_merge($this->credentials($request),['is_active' => 1]);
+        return $this->guard()->attempt(
+            $credentials, $request->has('remember')
+        );
+    }
+	*/
 }

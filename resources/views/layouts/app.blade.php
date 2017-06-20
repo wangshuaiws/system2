@@ -83,7 +83,7 @@
         <div class="navbar-header pull-left">
 
             <!-- #section:basics/navbar.layout.brand -->
-            <a href="home.html" class="navbar-brand">
+            <a href="{{ url('/home') }}" class="navbar-brand">
                 <small>
                     <img src="../assets/images/logo.png" style="width:34px;height:34px;" title="安阳工学院" alt="logo">
                     安工心理测评管理系统
