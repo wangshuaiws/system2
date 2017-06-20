@@ -73,7 +73,7 @@
                                     <div class="space-6"></div>
                                     <form id="login" method="post" class="form-horizontal" action="{{ url('/login') }}">
                                         {{ csrf_field() }}
-                                        <div class="form-group">
+                                        <div class="form-group{{ $errors->has('login') ? ' has-error' : '' }}">
                                             <label class="col-sm-3 control-label">用户名</label>
                                             <div class="col-sm-8">
                                                     <span class="block input-icon input-icon-right">
@@ -90,6 +90,11 @@
                                                            data-bv-stringlength-message="用户名长度在3-20之间">
                                                     <i class="ace-icon fa fa-user"></i>
                                                     </span>
+                                                @if ($errors->has('login'))
+                                                    <span class="help-block">
+                                        <strong>{{ $errors->first('login') }}</strong>
+                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="form-group">
